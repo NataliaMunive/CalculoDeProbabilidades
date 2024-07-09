@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calculo.css" />
+    <title>Calculo de Probabilidades</title>
+
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+
+<body>
+    <div id="pag"> 
+        <h1 id="Header">Calculo de Probabilidades con Poisson</h1>
+        <p id="instrucciones">Una secretaria comete dos errores por página, en promedio.<br> La probabilidad de cometer \( k \) errores en una página se calcula utilizando la distribución de Poisson.</p>
+        <p id="ecuacion">
+            \( P(X = k) = \frac{e^{-\lambda} \cdot \lambda^k}{k!} \)
+        </p>
+
+        <ul id="lista">
+            <li>\( P(X=k) \) es la probabilidad de que haya \( k \) eventos</li>
+            <li>\( e \) es la base del logaritmo natural (aproximadamente 2.71828)</li>
+            <li>\( \lambda \) es la tasa promedio de eventos por unidad de tiempo o espacio, en este caso es 2.</li>
+            <li>\( k \) es el número de eventos que estamos interesados</li>
+        </ul> 
+
+        <form onsubmit="calcularProbabilidad(); return false;">
+            <div class="centered">
+                <label for="errores" id="instrucciones">Ingresa el número de errores (\(k\)):</label>
+                <input type="text" id="errores">
+            </div>
+            
+            <div class="centered" id="cambiarLambdaDiv" style="display:none;">
+                <label for="lambda" id="instrucciones">Ingresa el nuevo valor de lambda (\(\lambda\)):</label>
+                <input type="text" id="lambda" value="2.0">
+            </div>
+ 
+            <div class="centered" id="botones-container">
+                <button type="button" onclick="mostrarCambiarLambda()">Cambiar Lambda</button>
+                <button type="submit">Calcular</button>
+                <button type="button" onclick="reiniciar()">Reiniciar</button>
+            </div>
+        </form>
+
+        <div class="centered">
+            <p id="resultado">Resultado: <span id="resultado"></span></p>
+        </div>
+
+        <script>
+            function mostrarCambiarLambda() {
+                const cambiarLambdaDiv = document.getElementById('cambiarLambdaDiv');
+                cambiarLambdaDiv.style.display = 'block';
+            }
+
+            function calcularProbabilidad() {
+                const inputErrores = document.getElementById('errores');
+                const inputLambda = document.getElementById('lambda');
+                const resultadoElement = document.getElementById('resultado');
+
+                try {
+                    const k = parseInt(inputErrores.value);
+                    const lambda = parseFloat(inputLambda.value);
+                    const probabilidad = calcularPoisson(lambda, k);
+                    resultadoElement.textContent = `La probabilidad de cometer ${k} errores es de: ${probabilidad.toFixed(4) * 100}%`;
+                } catch (error) {
+                    resultadoElement.textContent = "Por favor, ingresa un número válido";
+                }
+            }
+
+            function calcularPoisson(lambda, k) {
+                const exponente = Math.exp(-lambda);
+                const numerador = Math.pow(lambda, k);
+                const denominador = factorial(k);
+                return (exponente * numerador) / denominador;
+            }
+
+            function factorial(n) {
+                if (n === 0 || n === 1) {
+                    return 1;
+                } else {
+                    return n * factorial(n - 1);
+                }
+            }
+
+            function reiniciar() {
+                const inputErrores = document.getElementById('errores');
+                const inputLambda = document.getElementById('lambda');
+                const resultadoElement = document.getElementById('resultado');
+                const cambiarLambdaDiv = document.getElementById('cambiarLambdaDiv');
+                inputErrores.value = '';
+                inputLambda.value = '2.0';  // Restaurar el valor predeterminado de lambda
+                resultadoElement.textContent = '';
+                cambiarLambdaDiv.style.display = 'none';  // Ocultar el campo de cambiar lambda
+            }
+        </script>
+    </div>
+</body>
+</html>

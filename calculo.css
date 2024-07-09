@@ -1,0 +1,105 @@
+body{
+    font-family: Arial;
+    background-color: rgb(255, 255, 255);
+}
+
+#pag{
+    padding: 15px;
+    margin: 10px;
+    border: 5px solid rgb(212, 9, 60);
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    justify-content: center;
+    align-items: center;
+}
+
+#Header{
+    
+    color: rgb(212, 20, 20);
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#instrucciones{
+    
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-size-adjust: 12;
+}
+
+#ecuacion{
+    text-align: center; 
+    font-size: 18px;
+}
+
+#lista {
+    margin-left: 10px; 
+}
+
+.centered {
+    text-align: center;
+}
+
+#errores, #lambda{
+    width: 100px;
+}
+
+form {
+    text-align: center;
+}
+
+#botones-container {
+    margin-top: 1px; 
+}
+
+input[type="text"] {
+    border: none;
+    width: 97%;
+    padding: 10px;
+    border: 10px rgb(212, 9, 60);
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+
+button[type="submit"] {
+    background-color: rgb(153, 0, 38);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+button[type="button"] {
+    background-color: rgb(153, 0, 38);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+button[type="submit"]:hover {
+    background-color: rgb(153, 0, 38);
+}
+
+
+button[type="button"]:hover {
+    background-color: rgb(153, 0, 38);
+    cursor: pointer; 
+}
+
